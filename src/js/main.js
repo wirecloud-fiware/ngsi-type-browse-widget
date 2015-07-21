@@ -115,7 +115,8 @@
         this.table = new StyledElements.ModelTable(fields, {id: 'id', pageSize: 20, source: this.ngsi_source, 'class': 'table-striped'});
         this.table.addEventListener("click", onRowClick);
         this.table.reload();
-        this.layout.center.clear().appendChild(this.table);
+        this.layout.center.clear();
+        this.layout.center.appendChild(this.table);
     };
 
     var data_viewer = new DataViewer();
