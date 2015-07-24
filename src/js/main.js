@@ -68,7 +68,11 @@
 
     var onNGSIQuerySuccess = function onNGSIQuerySuccess(next, page, data, details) {
         for (var i = 0; i < data.length; i++) {
-            data[i].attributes = data[i].attributes.join(', ');
+            if (Array.isArray(data[i].attributes)) {
+                data[i].attributes = data[i].attributes.join(', ');
+            } else {
+                data[i].attributes = '';
+            }
         }
 
         var search_info = {
