@@ -1,7 +1,7 @@
 {
   "vendor": "CoNWeT",
   "name": "ngsi-type-browser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This widget allows you to browse NGSI content in a table",
   "repository": {
     "type": "git",

@@ -86,7 +86,7 @@
 
     var createNGSISource = function createNGSISource() {
         this.ngsi_source = new StyledElements.PaginatedSource({
-            'pageSize': 20,
+            'pageSize': 30,
             'requestFunc': function (page, options, onSuccess, onError) {
                 if (this.ngsi_connection !== null) {
                     this.ngsi_connection.getAvailableTypes({
@@ -116,7 +116,7 @@
             {field: 'name', label: 'Type', sortable: true, width: "20%"},
             {field: 'attributes', label: 'Attributes', sortable: false}
         ];
-        this.table = new StyledElements.ModelTable(fields, {id: 'id', pageSize: 20, source: this.ngsi_source, 'class': 'table-striped'});
+        this.table = new StyledElements.ModelTable(fields, {id: 'id', pageSize: 30, source: this.ngsi_source, 'class': 'table-striped'});
         this.table.addEventListener("click", onRowClick);
         this.table.reload();
         this.layout.center.clear();
