@@ -77,10 +77,8 @@
 
     var onNGSIQuerySuccess = function onNGSIQuerySuccess(next, page, data, details) {
         for (var i = 0; i < data.length; i++) {
-            if (Array.isArray(data[i].attributes)) {
-                data[i].attributes = data[i].attributes.join(', ');
-            } else {
-                data[i].attributes = '';
+            if (!Array.isArray(data[i].attributes)) {
+                data[i].attributes = [];
             }
         }
 
@@ -117,13 +115,17 @@
         }.bind(this));
     };
 
+    var listBuilder = function listBuilder(row) {
+        return row.attributes.join(', ');
+    };
+
     var createTable = function createTable() {
         var fields;
 
         // Create the table
         fields = [
             {field: 'name', label: 'Type', sortable: false, width: "20%"},
-            {field: 'attributes', label: 'Attributes', sortable: false}
+            {field: 'attributes', label: 'Attributes', sortable: false, contentBuilder: listBuilder}
         ];
         this.table = new StyledElements.ModelTable(fields, {id: 'id', pageSize: 30, source: this.ngsi_source, 'class': 'table-striped'});
         this.table.addEventListener("click", onRowClick);
