@@ -52,11 +52,17 @@
 
         this.ngsi_server = MashupPlatform.prefs.get('ngsi_server');
         var options = {
+            request_headers: {},
             use_user_fiware_token: MashupPlatform.prefs.get('use_user_fiware_token')
         };
+        if (MashupPlatform.prefs.get('use_owner_credentials')) {
+            options.request_headers['X-FI-WARE-OAuth-Token'] = 'true';
+            options.request_headers['X-FI-WARE-OAuth-Header-Name'] = 'X-Auth-Token';
+            options.request_headers['x-FI-WARE-OAuth-Source'] = 'workspaceowner';
+        }
         var tenant = MashupPlatform.prefs.get('ngsi_tenant').trim().toLowerCase();
         if (tenant !== '') {
-            options.request_headers = {'FIWARE-Service': tenant};
+            options.request_headers['FIWARE-Service'] = tenant;
         }
         this.ngsi_connection = new NGSI.Connection(this.ngsi_server, options);
     };
