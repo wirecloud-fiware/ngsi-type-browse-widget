@@ -1,5 +1,4 @@
-NGSI Type Browser widget 
-========================
+## Introduction
 
 The NGSI Type Browser widgets allows you to browser the entities types used in
 a given [Orion Context
@@ -13,41 +12,7 @@ this widget.
 > can make use of it on the [Mashup portal](https://mashup.lab.fiware.org).
 > Remember to take a look into the example mashups provided in the OrionStarterKit offering.
 
-Build
------
-
-Be sure to have installed [Node.js](http://node.js). For example, you can install it on Ubuntu and Debian running the following commands:
-
-```bash
-curl -sL https://deb.nodesource.com/setup | sudo bash -
-sudo apt-get install nodejs
-sudo apt-get install npm
-```
-
-Install other npm dependencies by running:
-
-```bash
-npm install
-```
-
-For build the widget you need download grunt:
-
-```bash
-sudo npm install -g grunt-cli
-```
-
-And now, you can use grunt:
-
-```bash
-grunt
-```
-
-If everything goes well, you will find a wgt file in the `dist` folder.
-
-Settings and Usage
-------------------
-
-### Settings
+## Settings
 
 - **NGSI server URL:** URL of the Orion Context Broker to use for retrieving
   entity information.
@@ -67,7 +32,7 @@ Settings and Usage
   symbol. Maximum length is 50 characters. If empty, the default tenant will be
   used
 
-### Wiring
+## Wiring
 
 ##### Input Endpoints
 
@@ -85,20 +50,3 @@ Settings and Usage
         "attributes": ["moisture", "ambientLight", "position", "humidity", "temperature"]
     }
     ```
-
-Copyright and License
----------------------
-
-Copyright (c) 2015 CoNWeT Lab., Universidad Politecnica de Madrid
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-  http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
