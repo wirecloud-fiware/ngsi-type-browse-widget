@@ -113,7 +113,7 @@
 
         // Create the table
         fields = [
-            {field: 'name', label: 'Type', sortable: true, width: "20%"},
+            {field: 'name', label: 'Type', sortable: false, width: "20%"},
             {field: 'attributes', label: 'Attributes', sortable: false}
         ];
         this.table = new StyledElements.ModelTable(fields, {id: 'id', pageSize: 30, source: this.ngsi_source, 'class': 'table-striped'});
