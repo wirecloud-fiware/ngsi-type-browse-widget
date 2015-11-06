@@ -127,7 +127,7 @@
             {field: 'name', label: 'Type', sortable: false, width: "20%"},
             {field: 'attributes', label: 'Attributes', sortable: false, contentBuilder: listBuilder}
         ];
-        this.table = new StyledElements.ModelTable(fields, {id: 'id', pageSize: 30, source: this.ngsi_source, 'class': 'table-striped'});
+        this.table = new StyledElements.ModelTable(fields, {id: 'name', pageSize: 30, source: this.ngsi_source, 'class': 'table-striped'});
         this.table.addEventListener("click", onRowClick);
         this.table.reload();
         this.layout.center.clear();
