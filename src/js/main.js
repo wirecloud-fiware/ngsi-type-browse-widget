@@ -51,10 +51,8 @@
     DataViewer.prototype.updateNGSIConnection = function updateNGSIConnection() {
 
         this.ngsi_server = MashupPlatform.prefs.get('ngsi_server');
-        this.ngsi_proxy = MashupPlatform.prefs.get('ngsi_proxy');
         this.ngsi_connection = new NGSI.Connection(this.ngsi_server, {
             use_user_fiware_token: MashupPlatform.prefs.get('use_user_fiware_token'),
-            ngsi_proxy_url: this.ngsi_proxy
         });
     };
 

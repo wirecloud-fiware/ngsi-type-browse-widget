@@ -51,8 +51,6 @@ Settings and Usage
 
 - **NGSI server URL:** URL of the Orion Context Broker to use for retrieving
   entity information.
-- **NGSI proxy URL:** URL of the Orion Context Broker proxy to use for receiving
-  notifications about changes.
 - **Use the FIWARE credentials of the user:** Use the FIWARE credentials of the
   user logged into WireCloud. Take into account this option cannot be enabled if
   you want to use this widget in a public workspace as anonoymous users doesn't
