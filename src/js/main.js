@@ -63,7 +63,7 @@
     /**************************************************************************/
 
     var onRowClick = function onRowClick(row) {
-        //MashupPlatform.wiring.pushEvent('selected-row', row);
+        MashupPlatform.wiring.pushEvent('selection', JSON.stringify(row));
     };
 
     var onNGSIQuerySuccess = function onNGSIQuerySuccess(next, page, data, details) {

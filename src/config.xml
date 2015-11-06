@@ -19,7 +19,7 @@
     </preferences>
 
     <wiring>
-        <outputendpoint name="selection" label="Selection" type="text"/>
+        <outputendpoint name="selection" label="Selection" type="text" friendcode="ngsi-type-info"/>
     </wiring>
 
     <contents src="index.html" useplatformstyle="true"/>
