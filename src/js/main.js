@@ -60,10 +60,17 @@
             options.request_headers['X-FI-WARE-OAuth-Header-Name'] = 'X-Auth-Token';
             options.request_headers['x-FI-WARE-OAuth-Source'] = 'workspaceowner';
         }
+
         var tenant = MashupPlatform.prefs.get('ngsi_tenant').trim().toLowerCase();
         if (tenant !== '') {
             options.request_headers['FIWARE-Service'] = tenant;
         }
+
+        var path = MashupPlatform.prefs.get('ngsi_service_path').trim().toLowerCase();
+        if (path !== '') {
+            options.request_headers['FIWARE-ServicePath'] = path;
+        }
+
         this.ngsi_connection = new NGSI.Connection(this.ngsi_server, options);
     };
 
