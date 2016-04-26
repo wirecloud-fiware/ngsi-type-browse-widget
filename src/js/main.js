@@ -20,7 +20,7 @@
 
     "use strict";
 
-    var DataViewer = function DataViewer() {
+    var NGSITypeBrowser = function NGSITypeBrowser() {
 
         /* Context */
         MashupPlatform.widget.context.registerCallback(function (newValues) {
@@ -36,7 +36,7 @@
         this.table = null;
     };
 
-    DataViewer.prototype.init = function init() {
+    NGSITypeBrowser.prototype.init = function init() {
         createNGSISource.call(this);
         this.updateNGSIConnection();
 
@@ -48,7 +48,7 @@
         this.layout.repaint();
     };
 
-    DataViewer.prototype.updateNGSIConnection = function updateNGSIConnection() {
+    NGSITypeBrowser.prototype.updateNGSIConnection = function updateNGSIConnection() {
 
         this.ngsi_server = MashupPlatform.prefs.get('ngsi_server');
         var options = {
@@ -141,7 +141,7 @@
         this.layout.center.appendChild(this.table);
     };
 
-    var data_viewer = new DataViewer();
-    window.addEventListener("DOMContentLoaded", data_viewer.init.bind(data_viewer), false);
+    var widget = new NGSITypeBrowser();
+    window.addEventListener("DOMContentLoaded", widget.init.bind(widget), false);
 
 })();
