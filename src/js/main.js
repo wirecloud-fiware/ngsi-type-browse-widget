@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 CoNWeT Lab., Universidad Politécnica de Madrid
+ * Copyright (c) 2015-2016 CoNWeT Lab., Universidad Politécnica de Madrid
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -56,8 +56,8 @@
             use_user_fiware_token: MashupPlatform.prefs.get('use_user_fiware_token')
         };
         if (MashupPlatform.prefs.get('use_owner_credentials')) {
-            options.request_headers['X-FI-WARE-OAuth-Token'] = 'true';
-            options.request_headers['X-FI-WARE-OAuth-Header-Name'] = 'X-Auth-Token';
+            options.request_headers['X-FIWARE-OAuth-Token'] = 'true';
+            options.request_headers['X-FIWARE-OAuth-Header-Name'] = 'X-Auth-Token';
             options.request_headers['x-FI-WARE-OAuth-Source'] = 'workspaceowner';
         }
 
