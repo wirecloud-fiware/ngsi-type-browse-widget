@@ -30,7 +30,13 @@
         }.bind(this));
 
         /* Preferences */
-        MashupPlatform.prefs.registerCallback(this.updateNGSIConnection.bind(this));
+        MashupPlatform.prefs.registerCallback(function (newValues) {
+            if ('ngsi_server' in newValues || 'use_user_fiware_token' in newValues || 'use_owner_credentials' in newValues || 'ngsi_tenant' in newValues || 'ngsi_service_path' in newValues) {
+                this.updateNGSIConnection();
+            }
+
+            this.ngsi_source.goToFirst();
+        }.bind(this));
 
         this.layout = null;
         this.table = null;
@@ -40,12 +46,11 @@
         createNGSISource.call(this);
         this.updateNGSIConnection();
 
-        this.layout = new StyledElements.BorderLayout();
+        this.layout = new StyledElements.VerticalLayout();
         createTable.call(this);
 
-        this.layout.getCenterContainer().addClassName('loading');
+        this.layout.center.addClassName('loading');
         this.layout.insertInto(document.body);
-        this.layout.repaint();
     };
 
     NGSITypeBrowser.prototype.updateNGSIConnection = function updateNGSIConnection() {
@@ -79,7 +84,9 @@
     /**************************************************************************/
 
     var onRowClick = function onRowClick(row) {
-        MashupPlatform.wiring.pushEvent('selection', JSON.stringify(row));
+        if (!MashupPlatform.prefs.get("allow_use")) {
+            MashupPlatform.wiring.pushEvent('selected-row', row);
+        }
     };
 
     var onNGSIQuerySuccess = function onNGSIQuerySuccess(next, page, data, details) {
@@ -115,10 +122,10 @@
             }.bind(this)
         });
         this.ngsi_source.addEventListener('requestStart', function () {
-            this.layout.getCenterContainer().disable();
+            this.layout.center.disable();
         }.bind(this));
         this.ngsi_source.addEventListener('requestEnd', function () {
-            this.layout.getCenterContainer().enable();
+            this.layout.center.enable();
         }.bind(this));
     };
 
@@ -134,6 +141,67 @@
             {field: 'name', label: 'Type', sortable: false, width: "20%"},
             {field: 'attributes', label: 'Attributes', sortable: false, contentBuilder: listBuilder}
         ];
+
+        if (MashupPlatform.prefs.get('allow_map') || MashupPlatform.prefs.get('allow_use')) {
+            fields.push({
+                label: 'Actions',
+                width: '100px',
+                contentBuilder: function (entry) {
+                    var content, button;
+
+                    content = new StyledElements.Fragment();
+
+                    if (MashupPlatform.prefs.get('allow_map')) {
+                        var attr_low = entry.attributes.map(function (attr) {return attr.toLowerCase();});
+                        button = new StyledElements.Button({'class': 'btn-success', 'iconClass': 'fa fa-map fa-fw', 'title': 'Show in a map'});
+                        var position_attrs = [];
+                        ['position', 'current_position'].some(function (attr_name) {
+                            if (attr_low.indexOf(attr_name) !== -1) {
+                                position_attrs.push(attr_name);
+                                return true;
+                            }
+                            return false;
+                        });
+                        button.enabled = position_attrs.length > 0;
+                        button.addEventListener("click", function () {
+                            var source = MashupPlatform.mashup.addOperator('CoNWeT/ngsi-source/3.0.7', {
+                                "preferences": {
+                                    "ngsi_server": {"value": MashupPlatform.prefs.get("ngsi_server")},
+                                    "ngsi_entities": {"value": entry.name},
+                                    "ngsi_update_attributes": {"value": position_attrs.join(', ')}
+                                }
+                            });
+                            var adapter = MashupPlatform.mashup.addOperator('CoNWeT/ngsientity2poi/3.0.3', {
+                                "preferences": {
+                                    "coordinates_attr": {"value": position_attrs.join(', ')}
+                                }
+                            });
+                            var map = MashupPlatform.mashup.addWidget('CoNWeT/map-viewer/2.5.8', {
+                                "refposition": button.getBoundingClientRect()
+                            });
+
+                            source.outputs.entityOutput.connect(adapter.inputs.entityInput);
+                            adapter.outputs.poiOutput.connect(map.inputs.poiInput);
+
+                        }.bind(this));
+                        content.appendChild(button);
+                    }
+
+                    if (MashupPlatform.prefs.get('allow_use')) {
+                        button = new StyledElements.Button({'class': 'btn-primary', 'iconClass': 'icon-play', 'title': 'Use'});
+                        button.addEventListener("click", function () {
+                            MashupPlatform.wiring.pushEvent('selection', JSON.stringify(entry));
+                        }.bind(this));
+                        content.appendChild(button);
+                    }
+
+                    return content;
+                }.bind(this),
+                sortable: false
+            });
+        }
+
+        // Create the table
         this.table = new StyledElements.ModelTable(fields, {id: 'name', pageSize: 30, source: this.ngsi_source, 'class': 'table-striped'});
         this.table.addEventListener("click", onRowClick);
         this.table.reload();

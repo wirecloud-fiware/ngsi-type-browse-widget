@@ -15,6 +15,7 @@
     </details>
 
     <requirements>
+        <feature name="DashboardManagement"/>
         <feature name="StyledElements"/>
         <feature name="NGSI"/>
     </requirements>
@@ -25,6 +26,8 @@
         <preference name="use_owner_credentials" type="boolean" label="Use the FIWARE credentials of the workspace owner" description="Use the FIWARE credentials of the owner of the workspace. This preference takes preference over &quot;Use the FIWARE credentials of the user&quot;. This feature is available on WireCloud 0.7.0+ in a experimental basis, future versions of WireCloud can change the way to use it making this option not funcional and requiring you to upgrade this operator" default="false"/>
         <preference name="ngsi_tenant" type="text" label="NGSI tenant/service" description="Tenant/service to use when connecting to the context broker. Must be a string of alphanumeric characters (lowercase) and the &quot;_&quot; symbol. Maximum length is 50 characters. If empty, the default tenant will be used" default=""/>
         <preference name="ngsi_service_path" type="text" label="NGSI scope" description="Scope/path to use when connecting to the context broker. Must be a string of alphanumeric characters (lowercase) and the &quot;_&quot; symbol separated by &quot;/&quot; slashes. Maximum length is 50 characters. If empty, the default service path will be used: /" default="/"/>
+        <preference name="allow_map" type="boolean" label="Display a Show in a map button" description="Allow users to display entities in a map" default="true"/>
+        <preference name="allow_use" type="boolean" label="Run button" description="Display a use button" default="true"/>
     </preferences>
 
     <wiring>

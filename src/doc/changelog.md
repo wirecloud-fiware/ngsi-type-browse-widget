@@ -1,3 +1,8 @@
+## v1.0.2 (2016-12-12)
+
+- Detect positionable entities (currently based on attribute names) and allow
+  the user to display them into a map.
+
 ## v1.0.1
 
 - Add support for the Orion Context Broker tenant/service feature including
