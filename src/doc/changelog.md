@@ -2,6 +2,7 @@
 
 - Detect positionable entities (currently based on attribute names) and allow
   the user to display them into a map.
+- Use up to date credentials header names
 
 ## v1.0.1
 
