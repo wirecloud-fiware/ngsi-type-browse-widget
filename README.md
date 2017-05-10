@@ -1,5 +1,4 @@
-NGSI Type Browser widget 
-========================
+# NGSI Type Browser widget
 
 The NGSI Type Browser widgets allows you to browser the entities types used in
 a given [Orion Context
@@ -13,8 +12,7 @@ this widget.
 > can make use of it on the [Mashup portal](https://mashup.lab.fiware.org).
 > Remember to take a look into the example mashups provided in the OrionStarterKit offering.
 
-Build
------
+## Build
 
 Be sure to have installed [Node.js](http://node.js). For example, you can install it on Ubuntu and Debian running the following commands:
 
@@ -52,8 +50,7 @@ about how to use widgets on the
 [WireCloud's User Guide](https://wirecloud.readthedocs.io/en/stable/user_guide/)
 available on Read the Docs.
 
-Copyright and License
----------------------
+## Copyright and License
 
 Copyright (c) 2015 CoNWeT Lab., Universidad Politecnica de Madrid
 
