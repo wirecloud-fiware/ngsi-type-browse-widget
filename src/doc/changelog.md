@@ -1,3 +1,8 @@
+## v1.0.3
+
+- Use updated authentication header names. Support for old names will be removed
+  from new versions of WireCloud.
+
 ## v1.0.2 (2016-12-12)
 
 - Detect positionable entities (currently based on attribute names) and allow
