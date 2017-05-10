@@ -1,4 +1,4 @@
-## v1.0.3
+## v1.0.3 (2017-05-10)
 
 - Use updated authentication header names. Support for old names will be removed
   from new versions of WireCloud.
