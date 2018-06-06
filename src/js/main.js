@@ -188,7 +188,7 @@
                     }
 
                     if (MashupPlatform.prefs.get('allow_use')) {
-                        button = new StyledElements.Button({'class': 'btn-primary', 'iconClass': 'icon-play', 'title': 'Use'});
+                        button = new StyledElements.Button({'class': 'btn-primary', 'iconClass': 'fa fa-play', 'title': 'Use'});
                         button.addEventListener("click", function () {
                             MashupPlatform.wiring.pushEvent('selection', JSON.stringify(entry));
                         }.bind(this));

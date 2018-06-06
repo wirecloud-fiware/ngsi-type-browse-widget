@@ -1,3 +1,8 @@
+## v1.0.4 (2018-06-06)
+
+- Upgrade to use FontAwesome 4
+
+
 ## v1.0.3 (2017-05-10)
 
 - Use updated authentication header names. Support for old names will be removed
@@ -8,6 +13,7 @@
 - Detect positionable entities (currently based on attribute names) and allow
   the user to display them into a map.
 - Use up to date credentials header names
+
 
 ## v1.0.1
 
