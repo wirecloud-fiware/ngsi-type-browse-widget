@@ -66,12 +66,12 @@
             options.request_headers['FIWARE-OAuth-Source'] = 'workspaceowner';
         }
 
-        var tenant = MashupPlatform.prefs.get('ngsi_tenant').trim().toLowerCase();
+        var tenant = MashupPlatform.prefs.get('ngsi_tenant').trim();
         if (tenant !== '') {
             options.request_headers['FIWARE-Service'] = tenant;
         }
 
-        var path = MashupPlatform.prefs.get('ngsi_service_path').trim().toLowerCase();
+        var path = MashupPlatform.prefs.get('ngsi_service_path').trim();
         if (path !== '' && path !== '/') {
             options.request_headers['FIWARE-ServicePath'] = path;
         }
