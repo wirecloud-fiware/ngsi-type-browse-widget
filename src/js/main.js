@@ -155,7 +155,7 @@
                         var attr_low = entry.attributes.map(function (attr) {return attr.toLowerCase();});
                         button = new StyledElements.Button({'class': 'btn-success', 'iconClass': 'fa fa-map fa-fw', 'title': 'Show in a map'});
                         var position_attrs = [];
-                        ['position', 'current_position'].some(function (attr_name) {
+                        ['location', 'position', 'current_position'].some(function (attr_name) {
                             if (attr_low.indexOf(attr_name) !== -1) {
                                 position_attrs.push(attr_name);
                                 return true;
@@ -164,19 +164,24 @@
                         });
                         button.enabled = position_attrs.length > 0;
                         button.addEventListener("click", function () {
-                            var source = MashupPlatform.mashup.addOperator('CoNWeT/ngsi-source/3.0.7', {
+                            var source = MashupPlatform.mashup.addOperator(MashupPlatform.prefs.get('ngsi_souce').trim(), {
                                 "preferences": {
-                                    "ngsi_server": {"value": MashupPlatform.prefs.get("ngsi_server")},
+                                    "ngsi_server": {"value": MashupPlatform.prefs.get("ngsi_server").trim()},
+                                    "ngsi_proxy": {"value": MashupPlatform.prefs.get("ngsi_proxy").trim()},
+                                    "use_user_fiware_token": {"value": MashupPlatform.prefs.get("use_user_fiware_token")},
+                                    "use_owner_credentials": {"value": MashupPlatform.prefs.get("use_owner_credentials")},
+                                    "ngsi_tenant": {"value": MashupPlatform.prefs.get('ngsi_tenant').trim()},
+                                    "ngsi_service_path": {"value": MashupPlatform.prefs.get('ngsi_service_path').trim()},
                                     "ngsi_entities": {"value": entry.name},
                                     "ngsi_update_attributes": {"value": position_attrs.join(', ')}
-                                }
+                                },
                             });
-                            var adapter = MashupPlatform.mashup.addOperator('CoNWeT/ngsientity2poi/3.0.3', {
+                            var adapter = MashupPlatform.mashup.addOperator(MashupPlatform.prefs.get('entity2poi').trim(), {
                                 "preferences": {
                                     "coordinates_attr": {"value": position_attrs.join(', ')}
                                 }
                             });
-                            var map = MashupPlatform.mashup.addWidget('CoNWeT/map-viewer/2.5.8', {
+                            var map = MashupPlatform.mashup.addWidget(MashupPlatform.prefs.get('map_viewer').trim(), {
                                 "refposition": button.getBoundingClientRect()
                             });
 

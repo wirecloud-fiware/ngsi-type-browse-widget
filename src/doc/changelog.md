@@ -1,3 +1,8 @@
+## v1.0.5 (2019-XX-XX)
+
+- Improve 'Show in a map' feature
+
+
 ## v1.0.4 (2018-06-06)
 
 - Upgrade to use FontAwesome 4
